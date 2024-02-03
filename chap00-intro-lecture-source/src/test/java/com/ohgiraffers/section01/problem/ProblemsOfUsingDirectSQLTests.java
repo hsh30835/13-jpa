@@ -200,6 +200,7 @@ class ProblemsOfUsingDirectSQLTests {
      * Category category = new Categroy();
      * menu.setCategory(category);   //메뉴와 카테고리의 관계 설정
      * menu.getCategory().getCategoryName(); //관계 설정되지 않으면 NPE 발생 가능성이 있음
+     * NPE : NullPointerException 원인 : 객체 생성 후 인스턴스를 생성하지 않은 상태에서 Null 오브젝트를 사용해서 발생
      *
      * JPA는 간단하게 이 문제를 해결한다.
      * Menu menu = entityManager.find(Menu.class, menuCode);
@@ -238,5 +239,6 @@ class ProblemsOfUsingDirectSQLTests {
         stmt2.close();
 
         Assertions.assertEquals(menu, menu2);
+        // 우리는 겉의 값을 우선으로 보지만 컴퓨터는 주소값으로 비교함
     }
 }
