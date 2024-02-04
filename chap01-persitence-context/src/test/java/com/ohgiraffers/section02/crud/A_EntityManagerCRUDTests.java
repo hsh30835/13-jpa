@@ -90,6 +90,8 @@ public class A_EntityManagerCRUDTests {
         // begin : 시작할거야
         try{
             entityManager.persist(menu); // 영속성컨텍스트에 넣겠다
+            // 메뉴추가에는 있고 메뉴수정에는 없는 이유는 새로운걸 넣어야하니깐 먼저 영속성컨텍스트를 거치고 db에 추가하는것이니
+            // 영속성컨텍스트에 등록해야함
             entityTransaction.commit(); // 디비에 넣겠다
             // commit하지 않으면 영속성컨텍스트에만 남고 디비에는 저장되지 않음
         }catch (Exception e){
@@ -124,9 +126,33 @@ public class A_EntityManagerCRUDTests {
     }
 
     @Test
+    public void 메뉴_이름_수정_테스트2(){
+        // given 조건
+        Menu menu = entityManager.find(Menu.class, 80);
+        System.out.println("menu = " + menu);
+
+        String menuNameChange = "김치우동";
+
+        // when 실행
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin(); //시작
+
+        try {
+            menu.setMenuName(menuNameChange);
+            entityTransaction.commit();
+        } catch (Exception e){
+            entityTransaction.rollback(); // 에러시 롤백
+            e.printStackTrace();
+        }
+
+        // then 검증
+        Assertions.assertEquals(menuNameChange, entityManager.find(Menu.class, 80).getMenuName());
+    }
+
+    @Test
     public void 메뉴_삭제하기_테스트(){
         // given
-        Menu menuToRemove = entityManager.find(Menu.class, 1);
+        Menu menuToRemove = entityManager.find(Menu.class, 1000);
 
         // when
         EntityTransaction entityTransaction = entityManager.getTransaction();
@@ -140,7 +166,27 @@ public class A_EntityManagerCRUDTests {
             e.printStackTrace();
         }
 
-        Menu removedMenu = entityManager.find(Menu.class, 1);
+        Menu removedMenu = entityManager.find(Menu.class, 1000);
+        Assertions.assertNull(removedMenu);
+    }
+
+    @Test
+    public void 메뉴_삭제_테스트2(){
+        // given 조건 PK 999를 찾아야됨
+        Menu menuToRemove = entityManager.find(Menu.class, 999);
+        // when 실행 menuToRemove를 삭제할것
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();
+
+        try {
+            entityManager.remove(menuToRemove);
+            entityTransaction.commit();
+        }catch (Exception e){
+            entityTransaction.rollback();
+            e.printStackTrace();
+        }
+        // then 검증 삭제됐는지
+        Menu removedMenu = entityManager.find(Menu.class, 999);
         Assertions.assertNull(removedMenu);
     }
 }

@@ -76,6 +76,9 @@ public class A_EntityLifeCycleTests {
 
         // then
         Assertions.assertTrue(isTrue);
+
+        // 같은이유 : foundMenu1이 db에서 PK가 11인 값을 영속성컨텍스트로 가져왔고 foundMenu2도 PK가 11인 값을 찾는데
+        // 이미 영속성컨텍스트에 존재하니 db에 가지않고 영속성컨텍스트에 있는 것을 재사용했음
     }
 
     @Test
