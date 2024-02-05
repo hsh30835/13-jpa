@@ -102,7 +102,7 @@ public class A_EntityLifeCycleTests {
     }
 
     @Test
-    void 준연속성_detach_테스트(){
+    void 준영속성_detach_테스트(){
         // given
         Menu foundMenu = entityManager.find(Menu.class, 11);
         Menu foundMenul = entityManager.find(Menu.class, 12);
@@ -118,6 +118,7 @@ public class A_EntityLifeCycleTests {
         foundMenul.setMenuPrice(5000);
 
         Assertions.assertEquals(5000, entityManager.find(Menu.class, 11).getMenuPrice());
+        entityManager.merge(foundMenul);
         Assertions.assertEquals(5000, entityManager.find(Menu.class, 12).getMenuPrice());
     }
 
@@ -166,7 +167,6 @@ public class A_EntityLifeCycleTests {
 
         // given
         Menu foundMenu = entityManager.find(Menu.class, 2);
-
 
 
         // when

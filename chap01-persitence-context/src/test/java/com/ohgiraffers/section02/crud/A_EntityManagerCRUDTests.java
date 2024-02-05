@@ -90,6 +90,7 @@ public class A_EntityManagerCRUDTests {
         // begin : 시작할거야
         try{
             entityManager.persist(menu); // 영속성컨텍스트에 넣겠다
+            // persist는 영속성컨테이너에 엔터티를 추가하는것
             // 메뉴추가에는 있고 메뉴수정에는 없는 이유는 새로운걸 넣어야하니깐 먼저 영속성컨텍스트를 거치고 db에 추가하는것이니
             // 영속성컨텍스트에 등록해야함
             entityTransaction.commit(); // 디비에 넣겠다
