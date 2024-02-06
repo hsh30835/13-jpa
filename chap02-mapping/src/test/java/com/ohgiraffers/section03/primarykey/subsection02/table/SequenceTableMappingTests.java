@@ -72,7 +72,7 @@ public class SequenceTableMappingTests {
         EntityTransaction entityTransaction = entityManager.getTransaction();
         entityTransaction.begin();
         entityManager.persist(member);
-//        entityManager.persist(member2);
+        entityManager.persist(member2);
         entityManager.persist(member3);
         entityTransaction.commit();
 
