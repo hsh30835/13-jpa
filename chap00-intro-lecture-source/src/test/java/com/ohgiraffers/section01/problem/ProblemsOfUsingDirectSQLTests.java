@@ -197,7 +197,7 @@ class ProblemsOfUsingDirectSQLTests {
      * }
      *
      * Menu menu = new Menu();
-     * Category category = new Categroy();
+     * Category category = new Category();
      * menu.setCategory(category);   //메뉴와 카테고리의 관계 설정
      * menu.getCategory().getCategoryName(); //관계 설정되지 않으면 NPE 발생 가능성이 있음
      * NPE : NullPointerException 원인 : 객체 생성 후 인스턴스를 생성하지 않은 상태에서 Null 오브젝트를 사용해서 발생
