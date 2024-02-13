@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/orders")
 public class OrderController {
 
     @Autowired

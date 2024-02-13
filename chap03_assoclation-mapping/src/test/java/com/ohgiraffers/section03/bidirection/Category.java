@@ -82,7 +82,7 @@ public class Category {
                 "categoryCode=" + categoryCode +
                 ", categoryName='" + categoryName + '\'' +
                 ", refCategoryCode=" + refCategoryCode +
-                ", menuList=" + menuList +
+//                ", menuList=" + menuList +
                 '}';
     }
 }

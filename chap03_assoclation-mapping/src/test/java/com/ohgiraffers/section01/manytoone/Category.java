@@ -20,7 +20,7 @@ import jakarta.persistence.*;
 *
 * - casecade : 연관된 엔티티에 대한영속성 전이를 설정한다.
 * - fetch : 연관된 엔티티를 로딩하는 전략을 설정한다.
-* - optional : 연관된 엔티티가 필수인지 서낵적인지 설정한다.
+* - optional : 연관된 엔티티가 필수인지 선택적인지 설정한다.
 * */
 @Entity(name = "category_section01")
 @Table(name = "tbl_category")
